@@ -1,0 +1,14 @@
+{
+  "name": "object-detection-using-yolo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Object detection demo with TensorFlow.js and Firebase Firestore",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "firebase-admin": "^13.0.2"
+  }
+}

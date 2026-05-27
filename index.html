@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection using YOLO</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Object Detection using YOLO</h1>
+            <p class="subtitle">Real-time object detection with YOLOv8</p>
+        </header>
+
+        <main class="main-content">
+            <div class="controls">
+                <div class="mode-selector">
+                    <button id="uploadBtn" class="mode-btn active">
+                        <span class="icon">📷</span>
+                        Upload Image
+                    </button>
+                    <button id="webcamBtn" class="mode-btn">
+                        <span class="icon">📹</span>
+                        Use Webcam
+                    </button>
+                </div>
+
+                <div class="upload-section" id="uploadSection">
+                    <label for="fileInput" class="upload-label">
+                        <input type="file" id="fileInput" accept="image/*" hidden>
+                        <div class="upload-area">
+                            <span class="upload-icon">📁</span>
+                            <p>Click to upload an image</p>
+                            <p class="upload-hint">or drag and drop</p>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="webcam-section hidden" id="webcamSection">
+                    <div class="webcam-controls">
+                        <button id="startWebcamBtn" class="webcam-btn">Start Webcam</button>
+                        <button id="stopWebcamBtn" class="webcam-btn hidden">Stop Webcam</button>
+                        <button id="captureBtn" class="capture-btn hidden">📸 Capture</button>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="clearBtn" class="action-btn">Clear Results</button>
+                    <button id="downloadBtn" class="action-btn hidden">Download Image</button>
+                </div>
+            </div>
+
+            <div class="detection-area">
+                <div class="canvas-container">
+                    <canvas id="canvas" class="detection-canvas"></canvas>
+                    <video id="webcam" class="webcam-video hidden" autoplay playsinline></video>
+                    <div id="loadingSpinner" class="loading-spinner hidden">
+                        <div class="spinner"></div>
+                        <p>Loading model...</p>
+                    </div>
+                </div>
+
+                <div class="results-panel">
+                    <h3>Detected Objects</h3>
+                    <div id="resultsList" class="results-list">
+                        <p class="no-results">No objects detected yet</p>
+                    </div>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Objects:</span>
+                            <span id="totalCount" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">High Confidence:</span>
+                            <span id="highConfCount" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <h3>Filter Objects</h3>
+                <div id="filterTags" class="filter-tags">
+                    <button class="filter-tag active" data-filter="all">All</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Powered by Ultralytics YOLOv8 + Firebase</p>
+        </footer>
+    </div>
+
+    <div id="errorMessage" class="error-message hidden">
+        <span class="error-icon">⚠️</span>
+        <span id="errorText"></span>
+        <button id="closeError" class="close-btn">×</button>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
